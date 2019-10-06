@@ -25,6 +25,7 @@ size :: Trie k v -> Int
 size = cata $ \case
   TrieF p m -> sum m + maybe 0 (const 1) p
 
+-- Trie k v ([k] -> Maybe v)
 lookup :: (Ord k) => Trie k v -> [k] -> Maybe v
 lookup = cata . curry $ \case
   (TrieF p _ , []) -> p

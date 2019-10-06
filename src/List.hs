@@ -7,15 +7,18 @@ import Numeric.Natural (Natural)
 
 import Data.Functor.Foldable
 
+-- data [a] = [] | a:[a]
 -- data ListF a b = Nil | Cons a b
+-- data ListF a [a] ~ [a]
 
--- Cons a Bool
+
+-- ListF a Bool -> Bool
 has :: (a -> Bool) -> [a] -> Bool
 has f = cata $ \case
   Nil -> False
   Cons a b -> f a || b
 
--- Cons a Bool
+-- ListF a [a]
 filter :: (a -> Bool) -> [a] -> [a]
 filter f = cata $ \case
   Nil -> []
@@ -35,7 +38,9 @@ max = cata $ \case
   Cons p Nothing -> Just p
   Cons q (Just x) -> Just $ if q > x then q else x
 
--- Cons a (Natural -> Maybe a)
+-- ListF a (Natural -> Maybe a) -> Natural -> Maybe a
+-- cata :: F b -> b -> (y -> b)
+-- cata :: F (Natural -> Maybe a) -> (Natural -> Maybe a) -> ...
 lookup :: [a] -> Natural  -> Maybe a
 lookup = cata . curry $ \case
   (Nil, _) -> Nothing
@@ -77,3 +82,14 @@ update' = c2 (apo acoalg) where
   acoalg ([], _, _) = Nil
   acoalg (_:as , 0, b) = Cons b $ Left as
   acoalg (a:as , n, b) = Cons a $ Right (as, n-1, b)
+
+
+data Expr = Lint Int | Add Expr Expr
+
+showExpr :: Expr -> String
+showExpr (Lint x) = show x
+showExpr (Add x y) = showExpr x ++ "+" ++ showExpr y
+
+evalExpr :: Expr -> Int
+evalExpr (Lint x) =  x
+evalExpr (Add x y) = evalExpr x + evalExpr y
