@@ -54,5 +54,3 @@ update = para palg where
       Nothing -> M.insert k (Trie.singleton ks a) $ fmap fst p
       Just (_, y) -> M.insert k (y ks a) $ fmap fst p
 
-update' :: (Ord k) => Trie k v -> [k] -> v  -> Trie k v
-update' = c2 apo

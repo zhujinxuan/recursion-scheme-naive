@@ -18,3 +18,6 @@ makeBaseFunctor ''Tree
 labels :: Tree a -> [a]
 labels = cata $ \case
   TreeF a y -> a : join y
+
+data P a = Z a | S (P (a,a)) deriving stock Show
+makeBaseFunctor ''P
