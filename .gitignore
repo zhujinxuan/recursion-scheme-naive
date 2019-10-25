@@ -1,3 +1,4 @@
 .stack-work/
 recursion-scheme-naive.cabal
 *~
+dist-newstyle/*
