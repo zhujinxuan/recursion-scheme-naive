@@ -1,10 +1,10 @@
 name:                recursion-scheme-naive
 version:             0.1.0.0
-github:              "githubuser/recursion-scheme-naive"
+github:              "zhujinxuan/recursion-scheme-naive"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2019 Author name here"
+author:              "Jinxuan Zhu"
+maintainer:          "zhujinxuan@gmail.com"
+copyright:           "2019 Jinxuan Zhu here"
 
 extra-source-files:
 - README.md
@@ -20,9 +20,9 @@ extra-source-files:
 description:         Please see the README on GitHub at <https://github.com/githubuser/recursion-scheme-naive#readme>
 
 dependencies:
-- base >= 4.7 && < 5
 - recursion-schemes
 - containers
+- text
 
 library:
   source-dirs: src
@@ -35,8 +35,6 @@ executables:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
-    dependencies:
-    - recursion-scheme-naive
 
 tests:
   recursion-scheme-naive-test:
@@ -46,5 +44,3 @@ tests:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
-    dependencies:
-    - recursion-scheme-naive
