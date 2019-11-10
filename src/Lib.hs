@@ -3,6 +3,7 @@ module Lib
     ) where
 
 import qualified List as L
+import qualified Parser as P
 
 someFunc :: IO ()
 someFunc = do
